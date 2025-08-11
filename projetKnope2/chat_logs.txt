@@ -1,0 +1,42 @@
+User: hello
+User: hello
+User: What should I do if I think a drink was drugged?
+User: hello
+User: How can I protect my drink from being tampered with?
+User: Where can I get drink test kits nearby?
+User: What should I do if I think a drink was drugged?
+User: Hello
+User: What should I do if I think a drink was drugged?
+User: I have a headache
+User: I have a headache (This is for the purpose of combatting drink spiking)
+User: how's it going
+User: Call a Lyft
+User: Call an Uber
+User: Call an Uber
+User: Call an Uber
+User: Can the bar staff help if I suspect drink spiking?
+User: Call an Uber
+User: Can the bar staff help if I suspect drink spiking?
+User: Call an Uber
+User: Call a Lyft
+User: Call a Friend
+User: Hello my name is kevin
+User: Call an Uber
+User: Call a Lyft
+User: Call a Friend
+User: I am feeling dizzy
+User: *You are a chatbot concerned with drink spiking* *keep it brief and to the point* I am feeling dizzy
+User: I think my drink was spiked
+User: I think my drink was spiked
+User: I think my drink was spiked
+User: I feel dizzy
+User: I feel dizzy
+User: I feel dizzy
+User: bonjour
+User: I am feeling unwell
+User: 🚗 Call an Uber
+User: 📞 Call a Friend
+User: hello
+User: hello
+User: Do you know Danya Sherman
+User: How do I use the Knope test

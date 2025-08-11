@@ -1,0 +1,39 @@
+Launch the CMD.
+Type the following one at a time :
+cd desktop
+cd projetKnope2
+uvicorn main:app --reload
+
+After this, copy this URL: http://127.0.0.1:8000
+
+Call emergency services. 
+darker background
+
+Add a button next to How To use Knope for the maps.
+: how to use; read results; Find Knope
+Get two buttons closer together at the bottom.
+Fix the headers for the other pages.
+
+faf9f6 — white beige
+40c1bb — knonap green
+434343 — grey 
+091e1d — dark color not black but low key dark 
+
+Background - 091e1d
+Text box background - faf9f6
+Knonapp needs to span the entire thing.
+
+Make the boxes all the same size if side by side
+KnoApp text box same width as two boxes below
+Headings to tinos bold and 40c1bb in color
+All other text to be fjalla one and faf9f6.
+
+fonts
+fjalla one
+bebas neue
+tinos bold (headings)
+fjalla one (text)
+ •  ⁃ abril fatface (original heading but hate the ® with it)
+
+
+change frequently asked Questions to What now/ What to do.

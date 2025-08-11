@@ -1,0 +1,604 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <meta charset="UTF-8" >
+  <title>KnoNap Chat</title>
+<style>
+
+@import url('https://fonts.googleapis.com/css2?family=Tinos:ital,wght@0,400;0,700;1,400;1,700&display=swap');
+</style>
+
+<style>
+    /* ---------- styles unchanged ---------- */
+
+  /* hello box  
+  .hello-box {
+  background-color: white;
+  border-radius: 10px;
+  padding: 30px 40px;
+  width: 80%;
+  max-width: 800px;
+  margin: 40px auto 20px auto;
+  text-align: center;
+  box-shadow: 0 4px 12px #40c1bb;
+  font-family: Arial, sans-serif;
+}
+/* */
+.top-wrapper {
+  position: relative;
+  width: 100%;
+  text-align: center;
+}
+
+
+.top-header {
+  position: absolute;
+  width: 100%;
+  top: 190px;
+  left: 50%;
+  transform: translateX(-50%);
+  margin-top: 0;
+  font-size: 19px;
+  color: #faf9f6;
+  text-align: center;
+}
+
+.top-header2 {
+  width: 100%;
+  position: absolute;
+  top: 203px;
+  transform: translateX(-50%);
+  left: 50%;
+
+  font-size: 19px;
+  color: #faf9f6;
+  text-align: center;
+}
+.top-header3 {
+  width: 100%;
+  position: absolute;
+  top: 225px;
+  transform: translateX(-50%);
+  left: 50%;
+
+  font-size: 19px;
+  color: #faf9f6;
+  text-align: center;
+}
+.top-header4 {
+  width: 100%;
+  position: absolute;
+  top: 245px;
+  transform: translateX(-50%);
+  left: 50%;
+
+  font-size: 19px;
+  color: #faf9f6;
+  text-align: center;
+}
+
+
+/* random box*/ 
+.chat-row {
+  display: flex;
+  flex-direction: column;
+
+  justify-content: center;
+  align-items: center;
+  gap: 0;
+ /* margin-top: 60px;*/ 
+  width: 90%;
+  flex-wrap: wrap;
+
+/*  margin-top: -120px;*/ 
+
+}
+
+.random-box {
+  margin-bottom: 3%;
+
+  background-color: white;
+  border-radius: 10px;
+  box-shadow: 0 4px 12px #40c1bb;
+
+  padding: 53px;
+  font-family: Arial, sans-serif;
+  align-items: center;
+  text-align: center;
+  margin-top: 3px;
+
+}
+.section-spacing {
+  margin-top: 20px;
+}
+
+.scan-box,
+.random-box,
+.safety-box,
+.map-box {
+  width: 90%;        /* equal width, side-by-side with small gap */
+  box-sizing: border-box;
+  height: auto;      /* content defines height */
+  margin: 0;
+  padding: 30px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  border: 3px solid lightblue !important;
+  border-radius: 8px;
+
+}
+
+.random-box h2 {
+    color: #2c3e50;
+    margin: 0 0 8px 0;
+    font-size: 26px;
+    font-weight: 600;
+}
+
+.random-box p {
+    color: #7f8c8d;
+    margin: 0 0 20px 0;
+    font-size: 15px;
+    line-height: 1.4;
+}
+
+
+
+  /* Scan Box Container */
+  .scan-box {
+    margin-bottom: 3%;
+    background-color: white;
+    border-radius: 10px;
+    align-items: center;
+    box-shadow: 0 4px 12px #40c1bb;
+    padding: 30px;
+    text-align: center;
+    font-family: Arial, sans-serif;
+  }
+
+  /* Title Style */
+  .scan-box h2 {
+    color: #2c3e50;
+    margin: 0 0 8px 0;
+    font-size: 26px;
+    font-weight: 600;
+  }
+
+
+  /* Description Text */
+  .scan-box p {
+    color: #7f8c8d;
+    margin: 0 0 20px 0;
+    font-size: 15px;
+    line-height: 1.4;
+  }
+
+  /* Scan Button */
+  .scan-button {
+    width: fit-content;
+    align-items: center;
+    padding: 12px;
+    font-size: 15px;
+    background-color: #40c1bb;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background-color 0.2s ease;
+  }
+  
+  .scan-button:hover {
+    background-color: #40c1bb;
+  }
+
+  /* Safety Box Container*/
+  .safety-box {
+  background-color: white;
+  border-radius: 16px;
+  box-shadow: 0 4px 12px #40c1bb;
+  text-align: center;
+  font-family: Arial, sans-serif;
+  margin-top: 3%;
+  margin-bottom: 3%;
+  width: 81.5%;
+  padding: 30px;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  }
+
+  /* Title Style */
+  .safety-box h2 {
+    color: #2c3e50;
+    margin: 0 0 12px 0;
+    font-size: 26px;
+    font-weight: 600;
+  }
+
+  /* Description Text */
+  .safety-box p {
+    color: #7f8c8d;
+    margin: 0 0 25px 0;
+    font-size: 17px;
+    line-height: 1.5;
+  }
+
+  /* Action Buttons Grid */
+  .safety-actions {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    margin-bottom: 20px;
+  }
+
+  /*MAP 
+  .map-box {
+  background-color: white;
+  border-radius: 10px;
+  box-shadow: 0 4px 12px #40c1bb;
+  padding: 40px 30px;
+  width: 600px;
+  text-align: center;
+  font-family: Arial, sans-serif;
+  margin: 10px auto;
+}
+.map-box h2 {
+  color: #2c3e50;
+  margin-bottom: 10px;
+  font-size: 26px;
+}
+.map-box p {
+  color: #7f8c8d;
+  font-size: 15px;
+  margin-bottom: 20px;
+}
+*/
+  /* Base Button Style */
+  .safety-btn {
+    padding: 16px;
+    font-size: 16px;
+    color: white;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: all 0.2s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+  }
+  /* images */ 
+  .scan-image {
+  width: 100%;
+  height: auto;        /* maintain aspect ratio */
+  max-height: 290px;   /* optional: limit how tall it gets */
+  object-fit: contain; /* ensures image doesn’t get stretched */
+  margin: 5px 5px;      /* spacing from text and button */
+  border-radius: 8px;  /* optional: rounded corners */
+}
+.scan-image2{
+    width: 100%;
+  height: auto;        /* maintain aspect ratio */
+  max-height: 290px;   /* optional: limit how tall it gets */
+  object-fit: contain; /* ensures image doesn’t get stretched */
+  border-radius: 8px;
+  top: 0px; 
+  margin-top: 0;
+  margin-bottom: 0;
+  display: block;
+
+}
+
+.chat-safety-message {
+  font-size: 12px;
+  color: #7f8c8d;
+  margin-bottom: 8px;
+  padding: 0 4px;
+  text-align: center;
+  line-height: 1.4;
+}
+
+  /* Specific Button Colors */
+  .uber-btn { background-color: #000000; }
+  .lyft-btn { background-color: #FF00BF; }
+  .friend-btn { 
+    background-color: #3aa8a8;
+    grid-column: span 2; /* Makes this button full width */
+  }
+
+  /* Hover Effects */
+  .safety-btn:hover {
+    transform: scale(1.02);
+    opacity: 0.9;
+  }
+  /*boutton mellouta*/
+  .bottom-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 1px;
+  margin: 20px 0;
+  margin-left: 10px;
+  margin-right: 10px;
+}
+
+.pill-button {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 20px;
+  background-color: white;
+  color: #2c3e50;
+  border: 2px solid #40c1bb;
+  border-radius: 30px;
+  font-size: 15px;
+  font-weight: bold;
+  cursor: pointer;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s ease, opacity 0.2s ease;
+}
+
+.pill-button:hover {
+  transform: scale(1.03);
+  opacity: 0.95;
+}
+
+.pill-icon {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background-color: #eee; /* optional background if image is transparent */
+}
+
+
+  /* Footer Note */
+  .safety-note {
+    font-size: 14px;
+    color: #95a5a6;
+    margin-top: 20px;
+    line-height: 1.4;}
+   
+
+    body{font-family: 'Tinos',serif;background-color:#091e1d;margin:0;padding:0;display:flex;flex-direction:column;align-items:center;justify-content:flex-start;min-height:100vh}
+    .open-chat-btn{width: fit-content; padding:12px 20px;font-size:16px;background-color:#44c2c2;color:#fff;border:none;border-radius:8px;cursor:pointer;font-weight:bold;box-shadow:0 2px 5px rgba(0,0,0,0.2)}
+    .open-chat-btn:hover{background-color:#d0d5d2}
+    #chat-wrapper{position:fixed;bottom:20px;right:20px;width:400px;height:90vh;z-index:1000;opacity:0;transform:translateY(40px) scale(.8);pointer-events:none;transition:opacity .3s ease,transform .3s ease}
+    #chat-wrapper.open{opacity:1;transform:translateY(0) scale(1);pointer-events:auto}
+    .chat-container{display:flex;flex-direction:column;justify-content:space-between;height:100%;background-color:#fff;border-radius:8px;box-shadow:0 0 10px rgba(0,0,0,0.2);overflow:hidden}
+    .chat-header{background-color:#44c2c2;color:#fff;padding:10px;font-size:18px;font-weight:bold;cursor:pointer}
+    .chat-messages{flex:1;padding:10px;overflow-y:auto;background-color:#ece5dd;display:flex;flex-direction:column}
+    .bubble{max-width:75%;margin:8px 0;padding:10px 15px;border-radius:15px;line-height:1.4;word-wrap:break-word;white-space:pre-wrap;font-family:inherit}
+    .user-msg{background-color:#44c2c2;align-self:flex-end;border-bottom-right-radius:0;color:#fff}
+    .bot-msg{background-color:#fff;align-self:flex-start;border-bottom-left-radius:0;border:1px solid #ddd}
+    .chat-input{display:flex;flex-direction:column;padding:10px;background-color:#f0f0f0;border-top:1px solid #ccc}
+    .chat-input-row{display:flex}
+    .chat-input textarea{flex:1;resize:none;padding:8px;border:1px solid #ccc;border-radius:6px;font-size:14px}
+    .chat-input button{margin-left:10px;padding:8px 16px;background-color:#44c2c2;color:#fff;border:none;border-radius:6px;cursor:pointer;font-weight:bold}
+    #suggestions{margin-top:10px;display:flex;flex-direction:column;gap:6px}
+    #suggestions button{background-color:#fff;color:#075e54;border:1px solid #ccc;border-radius:6px;padding:8px 12px;cursor:pointer;font-size:13px;text-align:left}
+    #suggestions button:hover{background-color:#e0f2f1}
+    #faq-toggle{background-color:#44c2c2;color:#fff;font-weight:bold}
+    #faq-toggle:hover{background-color:#3aa8a8}
+    #rideshare-container{display:flex;gap:8px;margin-top:6px}
+    #uber-button{flex:1;background-color:#000;color:#fff;font-weight:bold}
+    #uber-button:hover{background-color:#333}
+    #lyft-button{flex:1;background-color:#ff00bf;color:#fff;font-weight:bold}
+    #lyft-button:hover{background-color:#e600a8}
+    #friend-button{background-color:#25d366;color:#fff;font-weight:bold;margin-top:6px}
+    #friend-button:hover{background-color:#1fa851}
+    #faq-questions{display:none;flex-direction:column;gap:6px;margin-top:6px}
+    #faq-questions.expanded{display:flex}
+    .typing{font-style:italic;font-size:13px;margin:5px 0;color:gray}
+    html {
+  scroll-behavior: smooth;
+}
+
+  </style>
+</head>
+<body>
+  <!-- hello box code div-->
+   <div class="top-wrapper">
+    <img src="nope.png" alt="Illustration" class="scan-image2" />
+    <h1 class="top-header">Empowerment In Your Pocket.</h1>
+    <p class="top-header2"> If You Feel Unsafe,</p>
+        <p class="top-header3"> Contact Emergency Services Immediately.</p>
+        <p class="top-header4">Always Prioritize Your Safety. </p>
+
+</div>
+
+
+   <div class="chat-row section-spacing">
+
+  <div class="scan-box">
+
+  <h2>Support Chat</h2>
+  <p>Connect with our safety assistant for drink protection advice.</p>
+  <!--<img src="chatphoto.png" alt="Illustration" class="scan-image" />-->
+
+  <button class="open-chat-btn" onclick="location.href='chatbot.html'">Open Chat</button>
+</div>
+<!-- random box -->
+   <div class="random-box section-spacing ">
+    <h2>Knope Tests</h2>
+    <p>You can request a drink drug test from staff at Kno Certified Venues.</p>
+    <!--<img src="test.jpeg" alt="Illustration" class="scan-image" />-->
+
+<div style="display: flex; justify-content: center; gap: 12px; margin-top: 12px;">
+  <button class="scan-button" onclick="location.href='walkthrough.html'">How To Use Knope</button>
+  <button class="scan-button">Read Results</button>
+  <button class="scan-button" onclick="location.href='maps.html'">Find Knope</button>
+
+</div>
+
+
+  </div>
+  </div>
+
+</div>
+
+  <div id="chat-wrapper">
+    <div class="chat-container">
+      <div class="chat-header" onclick="toggleChat()">
+        <img src="knope.png" alt="Knope Logo" style="height:54px;vertical-align:middle;margin-right:20px;">
+      </div>
+      <div class="chat-messages" id="messages"></div>
+      
+      <div class="chat-input">
+        <div class="chat-input-row">
+          <textarea id="input" rows="1" placeholder="Type a message..."></textarea>
+          <button onclick="sendMessage()">Send</button>
+        </div>
+        <div id="suggestions"></div>
+      </div>
+    </div>
+  </div>
+  
+
+<!-- Safety box code div-->
+  <div class="safety-box">
+  <h2>🚗Get Home Safely</h2>
+  <p>Get a ride home or connect with external support.</p>
+  
+  <div class="safety-actions">
+  <button class="safety-btn uber-btn" onclick="window.location.href='uber://?action=setPickup&pickup=my_location'">
+      <span>Open Uber</span>
+    </button>
+  <button class="safety-btn lyft-btn" onclick="window.location.href='lyft://ridetype?id=lyft'">
+      <span>Open Lyft</span>
+    </button>
+    <button class="safety-btn friend-btn" onclick="window.open('tel:')">
+      <span>Call a Friend</span>
+    </button>
+        <button class="safety-btn friend-btn" onclick="window.open('tel:')">
+      <span>Call The Police</span>
+    </button>
+        </button>
+        <button class="safety-btn friend-btn" onclick="window.open('tel:')">
+      <span>Check In With A Friend</span>
+    </button>
+
+  </div>
+
+
+  <p class="safety-note">
+    These links will open the respective apps, if installed.<br>
+    Always prioritize your safety.
+  </p>
+</div>
+<!-- Safety box div code ends-->
+ <!-- Map box -->
+  <!--
+<div class="map-box section-spacing">
+  <h2>Knope Certified Bars</h2>
+  <p>Find locations that are Knope Certified. Drink comfortably knowing that Knope Tests are available and staff are trained to support patrons against drink spiking.</p>
+  <iframe 
+    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2550.879882980344!2d-77.07225849999999!3d38.9076089!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89b7b640ce9f8f6b%3A0x1c9d6d0554662882!2sUniversit%C3%A9%20de%20Georgetown!5e1!3m2!1sfr!2stn!4v1752506855853!5m2!1sfr!2stn%22" 
+    width="100%" 
+    height="300" 
+    style="border:0; border-radius: 10px;" 
+    allowfullscreen="" 
+    loading="lazy" 
+    referrerpolicy="no-referrer-when-downgrade">
+  </iframe>
+</div>
+-->
+  <script>
+    let chatOpened=false,faqExpanded=false; // bartenders have received training on safe consumption practices against drink spiking
+    const hiddenPrompt="SYSTEM: Keep all answers brief and helpful. Assume people using the chat are within a bar that has Knope drink spiking prevention tests."; // hidden prompt
+    const predefinedQnA={
+      "What should I do if I think a drink was drugged?":"If you suspect your drink was spiked:\n1. Stop drinking.\n2. Tell a friend or staff.\n3. Seek medical help.\n4. Keep the drink.\n5. Consider reporting.",
+      "How can I protect my drink from being tampered with?":"Reduce risk:\n1. Never leave drinks alone.\n2. Watch drinks being made.\n3. Use covers or test kits.",
+      "Where can I get drink test kits nearby?":"Kits are at the bar. Ask staff.",
+      "What symptoms should I look for if I feel unwell after drinking?":"Watch for unusual drowsiness, confusion, balance issues, nausea, fast heart, slow breathing. Get help fast.",
+      "Can the bar staff help if I suspect drink spiking?":"Yes. Alert staff and they will assist."
+    };
+
+    function renderSuggestions(){
+      const c=document.getElementById("suggestions");c.innerHTML="";
+      const faqToggle=document.createElement("button");faqToggle.id="faq-toggle";faqToggle.textContent="Frequently Asked Questions";faqToggle.onclick=toggleFAQ;c.appendChild(faqToggle);
+      const faqContainer=document.createElement("div");faqContainer.id="faq-questions";
+      Object.keys(predefinedQnA).forEach(q=>{const b=document.createElement("button");b.textContent=q;b.onclick=()=>handlePredefinedClick(q);faqContainer.appendChild(b);});
+      c.appendChild(faqContainer);
+      const rideshare=document.createElement("div");rideshare.id="rideshare-container";
+      const uber=document.createElement("button");uber.id="uber-button";uber.textContent="🚗 Call an Uber";uber.onclick=callUber;rideshare.appendChild(uber);
+      const lyft=document.createElement("button");lyft.id="lyft-button";lyft.textContent="🚖 Call a Lyft";lyft.onclick=callLyft;rideshare.appendChild(lyft);
+      c.appendChild(rideshare);
+      const friend=document.createElement("button");friend.id="friend-button";friend.textContent="📞 Call a Friend";friend.onclick=callFriend;c.appendChild(friend);
+    }
+
+    function toggleFAQ(){
+      const faqQ=document.getElementById("faq-questions");const faqT=document.getElementById("faq-toggle");
+      faqExpanded=!faqExpanded;
+      faqExpanded?(faqQ.classList.add("expanded"),faqT.textContent="Hide Questions"):(faqQ.classList.remove("expanded"),faqT.textContent="Frequently Asked Questions");
+    }
+
+    function toggleChat(){
+      const w=document.getElementById("chat-wrapper");const m=document.getElementById("messages");const b=document.querySelector(".open-chat-btn");
+      w.classList.toggle("open");
+      if(w.classList.contains("open")){
+        b.textContent="Close Chat";
+        if(!chatOpened){
+          const bot=document.createElement("div");bot.className="bubble bot-msg";
+          bot.textContent="Hello, my name is Knope. Your safety is our priority. How can I help you today?";
+          m.appendChild(bot);m.scrollTop=m.scrollHeight;renderSuggestions();chatOpened=true;
+        }
+      }else{b.textContent="Open Chat";}
+    }
+
+    function handlePredefinedClick(q){
+      const m=document.getElementById("messages");
+      const user=document.createElement("div");user.className="bubble user-msg";user.textContent=q;m.appendChild(user);m.scrollTop=m.scrollHeight;saveChatToServer(q);
+      const reply=predefinedQnA[q];const bot=document.createElement("div");bot.className="bubble bot-msg";bot.textContent="";m.appendChild(bot);m.scrollTop=m.scrollHeight;
+      let i=0;(function type(){if(i<reply.length){bot.textContent+=reply[i++];m.scrollTop=m.scrollHeight;setTimeout(type,20);}})();
+    }
+
+    async function sendMessage(){
+      const inputField=document.getElementById("input");const m=document.getElementById("messages");const text=inputField.value.trim();if(!text)return;
+      const user=document.createElement("div");user.className="bubble user-msg";user.textContent=text;m.appendChild(user);inputField.value="";m.scrollTop=m.scrollHeight;saveChatToServer(text);
+      const match=Object.keys(predefinedQnA).find(q=>q.toLowerCase()===text.toLowerCase());if(match){handlePredefinedClick(match);return;}
+      const typing=document.createElement("div");typing.className="typing";typing.textContent="Knope is typing...";m.appendChild(typing);m.scrollTop=m.scrollHeight;
+      try{
+        const res=await fetch("/chat",{method:"POST",headers:{"Content-Type":"application/json"},
+          /* hidden prompt injected here */
+          body:JSON.stringify({message:hiddenPrompt+"\n\n"+text})
+        });
+        const data=await res.json();const reply=data.response||"Error: "+(data.detail||"No response");
+        typing.remove();const bot=document.createElement("div");bot.className="bubble bot-msg";bot.textContent="";m.appendChild(bot);
+        let i=0;(function type(){if(i<reply.length){bot.textContent+=reply[i++];m.scrollTop=m.scrollHeight;setTimeout(type,30);}})();
+      }catch(err){
+        typing.remove();const e=document.createElement("div");e.className="bubble bot-msg";e.textContent="Error: "+err.message;m.appendChild(e);
+      }
+    }
+
+    function callFriend(){genericQuick("📞 Call a Friend","That's a great idea! Opening contacts...",()=>window.open('contacts:','_blank'));}
+    function callLyft(){genericQuick("🚖 Call a Lyft","I'll help you get a safe ride home with Lyft. Opening Lyft...",()=>window.open('https://lyft.com','_blank'));}
+    function callUber(){genericQuick("🚗 Call an Uber","I'll help you get a safe ride home. Opening Uber...",()=>window.open('https://uber.com','_blank'));}
+
+    function genericQuick(label,reply,action){
+      const m=document.getElementById("messages");
+      const user=document.createElement("div");user.className="bubble user-msg";user.textContent=label;m.appendChild(user);m.scrollTop=m.scrollHeight;saveChatToServer(label);
+      const bot=document.createElement("div");bot.className="bubble bot-msg";bot.textContent="";m.appendChild(bot);m.scrollTop=m.scrollHeight;
+      let i=0;(function type(){if(i<reply.length){bot.textContent+=reply[i++];m.scrollTop=m.scrollHeight;setTimeout(type,20);}else{setTimeout(action,500);}})();
+    }
+
+    function saveChatToServer(t){fetch("/log",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({user:t})}).catch(e=>console.error("Failed to save chat:",e));}
+  </script>
+  <div class="bottom-buttons">
+  <button class="pill-button" onclick="location.href='report.html'">
+    <img src="report.png" alt="" class="pill-icon" />
+    Report An Incident
+  </button>
+<button class="pill-button" onclick="location.href='maps.html'">
+  <img src="barmap.jpg" class="pill-icon" />
+  Kno Certified Venues
+</button>
+</div>
+
+
+</body>
+</html>

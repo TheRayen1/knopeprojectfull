@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Knope Safety App</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .phone-container {
+            width: 375px;
+            height: 812px;
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+            border-radius: 40px;
+            border: 3px solid #6b46c1;
+            padding: 20px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+            overflow-y: auto;
+        }
+
+        .status-bar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            color: white;
+            font-size: 16px;
+            font-weight: 600;
+            margin-bottom: 30px;
+        }
+
+        .status-left {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .status-right {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .signal-bars {
+            display: flex;
+            gap: 2px;
+            align-items: end;
+        }
+
+        .bar {
+            width: 3px;
+            background: white;
+            border-radius: 1px;
+        }
+
+        .bar:nth-child(1) { height: 4px; }
+        .bar:nth-child(2) { height: 6px; }
+        .bar:nth-child(3) { height: 8px; }
+        .bar:nth-child(4) { height: 10px; }
+
+        .battery {
+            width: 24px;
+            height: 12px;
+            border: 1px solid white;
+            border-radius: 2px;
+            position: relative;
+        }
+
+        .battery::after {
+            content: '';
+            position: absolute;
+            right: -3px;
+            top: 3px;
+            width: 2px;
+            height: 6px;
+            background: white;
+            border-radius: 0 1px 1px 0;
+        }
+
+        .battery-fill {
+            width: 80%;
+            height: 100%;
+            background: white;
+            border-radius: 1px;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .logo {
+            width: 250px;
+            height: 100px;
+            margin: 0 auto 10px;
+            display: block;
+            object-fit: contain;
+            border-radius: 8px;
+        }
+
+        .tagline {
+            color: #a0a0a0;
+            font-size: 16px;
+            margin-bottom: 35px;
+            font-weight: 400;
+            letter-spacing: 0.5px;
+            margin-top: 0;
+        }
+
+        .emergency-section {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .emergency-title {
+            font-size: 24px;
+            font-weight: 700;
+            color: white;
+            margin-bottom: 8px;
+        }
+
+        .emergency-subtitle {
+            color: #a0a0a0;
+            font-size: 16px;
+        }
+
+        .illustration {
+            width: 80px;
+            height: 80px;
+            background: #6b46c1;
+            border-radius: 50%;
+            margin: 0 auto 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 14px;
+            text-align: center;
+        }
+
+        .main-actions {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            margin-bottom: 30px;
+        }
+
+        .action-card {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            padding: 20px;
+            text-align: center;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+            transition: transform 0.2s ease;
+        }
+
+        .action-card:hover {
+            transform: translateY(-2px);
+        }
+
+        .action-card h3 {
+            font-size: 18px;
+            font-weight: 700;
+            color: #1a1a2e;
+            margin-bottom: 10px;
+        }
+
+        .action-card p {
+            font-size: 13px;
+            color: #666;
+            line-height: 1.4;
+            margin-bottom: 15px;
+        }
+
+        .card-image {
+            width: 100%;
+            height: 80px;
+            background: #f0f0f0;
+            border-radius: 10px;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #999;
+            font-size: 12px;
+        }
+
+        .btn-primary {
+            background: #4ecdc4;
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            border-radius: 25px;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.2s ease;
+        }
+
+        .btn-primary:hover {
+            background: #45b7b8;
+        }
+
+        .get-home-section {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            padding: 25px;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+
+        .get-home-title {
+            font-size: 20px;
+            font-weight: 700;
+            color: #1a1a2e;
+            margin-bottom: 20px;
+        }
+
+        .transport-buttons {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+
+        .transport-btn {
+            background: #4ecdc4;
+            color: white;
+            border: none;
+            padding: 15px;
+            border-radius: 15px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.2s ease;
+        }
+
+        .transport-btn:hover {
+            background: #45b7b8;
+        }
+
+        .friend-btn {
+            background: #4ecdc4;
+            color: white;
+            border: none;
+            padding: 15px;
+            border-radius: 15px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            width: 100%;
+            transition: background 0.2s ease;
+        }
+
+        .friend-btn:hover {
+            background: #45b7b8;
+        }
+
+        .bottom-actions {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+        }
+
+        .bottom-btn {
+            background: rgba(255, 255, 255, 0.95);
+            border: none;
+            padding: 15px;
+            border-radius: 15px;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            color: #1a1a2e;
+            transition: background 0.2s ease;
+        }
+
+        .bottom-btn:hover {
+            background: rgba(255, 255, 255, 1);
+        }
+
+        .icon {
+            width: 24px;
+            height: 24px;
+            background: #6b46c1;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 12px;
+        }
+    </style>
+</head>
+<body>
+    <div class="phone-container">
+        <div class="status-bar">
+            <div class="status-left">
+                <span>9:41</span>
+            </div>
+            <div class="status-right">
+                <div class="signal-bars">
+                    <div class="bar"></div>
+                    <div class="bar"></div>
+                    <div class="bar"></div>
+                    <div class="bar"></div>
+                </div>
+                <span>📶</span>
+                <span>📶</span>
+                <div class="battery">
+                    <div class="battery-fill"></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="header">
+            <img src="nope.png" alt="Knope Logo" class="logo">
+            <div class="tagline">Always Prioritize Your Safety</div>
+            
+            <div class="emergency-section">
+                <div class="illustration">Image Placeholder</div>
+                <h2 class="emergency-title">Are you in an emergency?</h2>
+                <p class="emergency-subtitle">We are here to help.</p>
+            </div>
+        </div>
+
+        <div class="main-actions">
+            <div class="action-card">
+                <h3>Chat With Knope</h3>
+                <p>Connect with our safety assistant for drink protection advice and emergency help.</p>
+                <img src="chatphoto.png" alt="Chat Interface" class="card-image">
+                <button class="btn-primary">Open Chat</button>
+            </div>
+            
+            <div class="action-card">
+                <h3>Knope Test Walkthrough</h3>
+                <p>You can request a drink testing out from the barstaff at this location.</p>
+                <img src="test.jpeg" alt="Test Kit" class="card-image">
+                <button class="btn-primary">Step By Step Instructions</button>
+            </div>
+        </div>
+
+        <div class="get-home-section">
+            <h3 class="get-home-title">Get Home Safely</h3>
+            
+            <div class="transport-buttons">
+                <button class="transport-btn">Open Uber</button>
+                <button class="transport-btn">Open Lyft</button>
+            </div>
+            
+            <button class="friend-btn">Call A Friend</button>
+        </div>
+
+        <div class="bottom-actions">
+            <button class="bottom-btn">
+                <div class="icon">!</div>
+                Report An Incident
+            </button>
+            <button class="bottom-btn">
+                <div class="icon">⭐</div>
+                Our Certified Bars
+            </button>
+        </div>
+    </div>
+</body>
+</html>
