@@ -230,7 +230,7 @@
       appendMessage(text, 'user');
       inputField.value = '';
 
-      fetch('/log', {
+      fetch('https://knopeprojectfull.onrender.com/log', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ user: text })
@@ -243,7 +243,7 @@
       messagesDiv.scrollTop = messagesDiv.scrollHeight;
 
       try {
-        const response = await fetch('/chat', {
+        const response = await fetch('https://knopeprojectfull.onrender.com/chat', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({ message: hiddenPrompt + "\n\n" + text })
@@ -288,7 +288,7 @@
     }
 
     function saveChatToServer(text) {
-      fetch('/log', {
+      fetch('https://knopeprojectfull.onrender.com/log', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ user: text })
@@ -302,3 +302,4 @@
   </script>
 </body>
 </html>
+
