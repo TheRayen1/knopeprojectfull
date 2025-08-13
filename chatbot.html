@@ -81,10 +81,12 @@
     .chat-input-row {
       display: flex;
       gap: 10px;
+      align-items: center;
+      flex-wrap: wrap;
     }
 
     textarea {
-      flex: 1;
+      flex: 1 1 300px;
       resize: none;
       font-size: 14px;
       padding: 8px;
@@ -109,11 +111,17 @@
       color: gray;
     }
 
+    /* FAQ region is collapsed by default */
     #faq-questions {
+      display: none;
       padding: 0 16px 16px;
-      display: flex;
       flex-direction: column;
       gap: 8px;
+    }
+
+    /* When opened, use flex layout */
+    #faq-questions.open {
+      display: flex;
     }
 
     .faq-button {
@@ -162,10 +170,8 @@
     .button-container .lyft {
       border-color: #faf9f6;
       color: black;
-            border: 3px solid #ccc;
-                  box-shadow: inset -4px -4px 0 rgba(0, 0, 0, 0.06);
-
-
+      border: 3px solid #ccc;
+      box-shadow: inset -4px -4px 0 rgba(0, 0, 0, 0.06);
     }
 
     .button-container .friend {
@@ -183,7 +189,7 @@
   <div class="chat-container">
     <div class="chat-header">
       <img src="nope.png" alt="Knope" />
-       Safety Assistant
+      Safety Assistant
     </div>
 
     <div class="chat-messages" id="messages"></div>
@@ -192,20 +198,23 @@
       <div class="chat-input-row">
         <textarea id="input" rows="1" placeholder="Type a message..."></textarea>
         <button class="send-btn" onclick="sendMessage()">Send</button>
+
+        <!-- New: Toggle FAQs button -->
+        <button id="faq-toggle" class="send-btn" type="button" aria-expanded="false">
+          Show FAQs
+        </button>
       </div>
     </div>
 
+    <!-- FAQ container remains, now starts collapsed -->
     <div id="faq-questions"></div>
 
     <div class="button-container">
-
       <button onclick="location.href='index.html'">Home</button>
       <button onclick="location.href='report.html'">Report an Incident</button>
-                <button class="uber">Call an Uber</button>
-              <button class="lyft">Call a Lyft</button>
+      <button class="uber">Call an Uber</button>
+      <button class="lyft">Call a Lyft</button>
       <button class="friend">Call Friend</button>
-
-
     </div>
   </div>
 
@@ -272,8 +281,8 @@
       "Can the bar staff help if I suspect drink spiking?": "Yes. Alert staff and they will assist."
     };
 
-    function showFAQ() {
-      const faqContainer = document.getElementById("faq-questions");
+    function buildFAQButtonsOnce(container) {
+      if (container.dataset.populated === "true") return;
       Object.entries(predefinedQnA).forEach(([question, answer]) => {
         const btn = document.createElement("button");
         btn.textContent = question;
@@ -283,8 +292,20 @@
           appendMessage(answer, "bot");
           saveChatToServer(question);
         };
-        faqContainer.appendChild(btn);
+        container.appendChild(btn);
       });
+      container.dataset.populated = "true";
+    }
+
+    function toggleFAQ() {
+      const faqContainer = document.getElementById("faq-questions");
+      buildFAQButtonsOnce(faqContainer);
+      faqContainer.classList.toggle("open");
+
+      const isOpen = faqContainer.classList.contains("open");
+      const toggleBtn = document.getElementById("faq-toggle");
+      toggleBtn.textContent = isOpen ? "Hide FAQs" : "Show FAQs";
+      toggleBtn.setAttribute("aria-expanded", String(isOpen));
     }
 
     function saveChatToServer(text) {
@@ -297,9 +318,9 @@
 
     window.onload = () => {
       appendMessage("Hello, my name is Knope. Your safety is our priority. How can I help you today?", "bot");
-      showFAQ();
+      const faqToggleBtn = document.getElementById("faq-toggle");
+      if (faqToggleBtn) faqToggleBtn.addEventListener("click", toggleFAQ);
     };
   </script>
 </body>
 </html>
-
