@@ -4,8 +4,11 @@ from fastapi.staticfiles import StaticFiles
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
 import google.generativeai as genai
+from dotenv import load_dotenv
+import os 
+load_dotenv()
 
-genai.configure(api_key="AIzaSyC_9Zw3h776MRV-wz23s2DRbfaytBLLInk")  # Replace with your real key
+genai.configure(api_key=os.getenv("GOOGLE_API_KEY"))  
 
 app = FastAPI()
 
@@ -44,5 +47,6 @@ async def log_chat(log: ChatLog):
     with open("chat_logs.txt", "a", encoding="utf-8") as f:
         f.write(f"User: {log.user}\n")
     return {"status": "logged"}
+
 
 
