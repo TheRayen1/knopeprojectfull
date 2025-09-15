@@ -5,7 +5,7 @@ from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
 import google.generativeai as genai
 
-genai.configure(api_key="AIzaSyC_9Zw3h776MRV-wz23s2DRbfaytBLLInk")  # Replace with your real key
+genai.configure(api_key="")  # Replace with your real key
 
 app = FastAPI()
 
@@ -44,3 +44,4 @@ async def log_chat(log: ChatLog):
     with open("chat_logs.txt", "a", encoding="utf-8") as f:
         f.write(f"User: {log.user}\n")
     return {"status": "logged"}
+
