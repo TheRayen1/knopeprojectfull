@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Knope Chatbot</title>
@@ -218,12 +219,38 @@
   </div>
 
   <script>
+    const supabaseUrl = 'https://sccaekqffwoziprkkf.supabase.co';
+    const supabaseKey = 'sb_publishable_FCJ6n9u1A14pW0Xey-qi@g_c8XVktEu';
+    const supabase = supabase.createClient(supabaseUrl, supabaseKey);
+
     const hiddenPrompt = "You are a conversational AI assistant embedded in a nightlife safety app designed to help patrons in bars and clubs to help identify next step support for people in social settings to empower themselves against drink spiking. Your responses must be short (2–3 sentences), context-sensitive, calm, and actionable.Prioritize empathy, safety, and discretion at all times.Please write a concise and natural reply. Please limit the reply within 50 words. Do not hallucinate. You must detect and respond to user sentiment (e.g., fear, confusion, urgency) appropriately, using a reassuring, non-judgmental tone.NEVER suggest a user be alone, and NEVER give advice that contradicts established safety protocols — especially in cases involving suspected drugging, harassment, or disorientation.If someone may have been drugged or feels unsafe and they identify that they are currently within a bar/club/nightlife setting, encourage them to seek help from venue staff, stay with trusted people, or contact emergency services. If someone may have been drugged or feels unsafe and they are not currently within a bar/club/nightlife setting, encourage them to stay with trusted people, or contact emergency services.Assume users may be in loud, crowded, or high-stress environments. Your goal is to help them act quickly, discreetly, and safely, guiding them toward the next best action. This chat is one component of a broader web app (www.knopecover.com) that also includes resources for getting home safely (e.g., Uber/Lyft) and understanding, accessing, and interpreting drink drug test kits. When relevant, reference the home page resources and guide users there for further support. When relevant to provide additional support resources for people who explicitly say they had been drugged, direct them to review resources available for support via: https://knomore.org/pages/education-tools. Only suggest these links when appropriate.";
 
     const messagesDiv = document.getElementById('messages');
     const inputField = document.getElementById('input');
-
-    function appendMessage(content, sender) {
+    
+async function saveMessageToSupabase(message, sender) {
+  try {
+    const { data, error } = await supabase
+      .from('input')
+      .insert([
+        {
+          message: `${sender}: ${message}`,  // Combine sender + message
+          created_at: new Date().toISOString()  // Use correct column name
+        }
+      ]);
+    
+    if (error) {
+      console.error('Error saving to Supabase:', error);
+      return false;
+    }
+    
+    console.log('Message saved to Supabase:', data);
+    return true;
+  } catch (err) {
+    console.error('Exception saving to Supabase:', err);
+    return false;
+  }
+}    function appendMessage(content, sender) {
       const bubble = document.createElement('div');
       bubble.className = `bubble ${sender === 'user' ? 'user-msg' : 'bot-msg'}`;
       bubble.textContent = content;
@@ -231,46 +258,55 @@
       messagesDiv.scrollTop = messagesDiv.scrollHeight;
     }
 
-    async function sendMessage() {
-      const text = inputField.value.trim();
-      if (!text) return;
+async function sendMessage() {
+  const text = inputField.value.trim();
+  if (!text) return;
 
-      appendMessage(text, 'user');
-      inputField.value = '';
+  appendMessage(text, 'user');
+  inputField.value = '';
 
-      fetch('https://knopeprojectfull.onrender.com/log', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ user: text })
-      }).catch(console.error);
+  // Save user message to Supabase
+  await saveMessageToSupabase(text, 'user');
+  
+  fetch('https://knopeprojectfull.onrender.com/log', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ user: text })
+  }).catch(console.error);
 
-      const typing = document.createElement('div');
-      typing.className = 'typing';
-      typing.textContent = 'Knope is typing...';
-      messagesDiv.appendChild(typing);
-      messagesDiv.scrollTop = messagesDiv.scrollHeight;
+  const typing = document.createElement('div');
+  typing.className = 'typing';
+  typing.textContent = 'Knope is typing...';
+  messagesDiv.appendChild(typing);
+  messagesDiv.scrollTop = messagesDiv.scrollHeight;
 
-      try {
-        const response = await fetch('https://knopeprojectfull.onrender.com/chat', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ message: hiddenPrompt + "\n\n" + text })
-        });
+  try {
+    const response = await fetch('https://knopeprojectfull.onrender.com/chat', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ message: hiddenPrompt + "\n\n" + text })
+    });
 
-        if (!response.ok) {
-          const errorText = await response.text();
-          throw new Error(`Server error ${response.status}: ${errorText}`);
-        }
-
-        const data = await response.json();
-        typing.remove();
-        appendMessage(data.response || 'No response.', 'bot');
-
-      } catch (err) {
-        typing.remove();
-        appendMessage(`Error: ${err.message}`, 'bot');
-      }
+    if (!response.ok) {
+      const errorText = await response.text();
+      throw new Error(`Server error ${response.status}: ${errorText}`);
     }
+
+    const data = await response.json();
+    typing.remove();
+    appendMessage(data.response || 'No response.', 'bot');
+    
+    // Save bot response to Supabase
+    await saveMessageToSupabase(data.response || 'No response.', 'bot');
+
+  } catch (err) {
+    typing.remove();
+    appendMessage(`Error: ${err.message}`, 'bot');
+    
+    // Save error message to Supabase
+    await saveMessageToSupabase(`Error: ${err.message}`, 'bot');
+  }
+}
 
     const predefinedQnA = {
   "What can I do if I think my drink was tampered or drugged?": "If you suspect your drink was tampered or drugged:\n1. Stop Drinking.\n2. Tell a friend, staff member, and/or trusted person outside of the scene.\n3. Get to a position of safety.\n4. Seek medical and/or police assistance.\n5. Consider reporting to police, bar staff, university, or medical personnel.",
@@ -280,21 +316,26 @@
   "Can the bar staff help if I suspect that a drink was drugged?": "Partnered bar staff are trained to support against drink spiking. To find partnered bars, go to the home page and click on the \"Find Knope\" button under the \"Knope Tests\" category."
 };
 
-    function buildFAQButtonsOnce(container) {
-      if (container.dataset.populated === "true") return;
-      Object.entries(predefinedQnA).forEach(([question, answer]) => {
-        const btn = document.createElement("button");
-        btn.textContent = question;
-        btn.className = "faq-button";
-        btn.onclick = () => {
-          appendMessage(question, "user");
-          appendMessage(answer, "bot");
-          saveChatToServer(question);
-        };
-        container.appendChild(btn);
-      });
-      container.dataset.populated = "true";
-    }
+function buildFAQButtonsOnce(container) {
+  if (container.dataset.populated === "true") return;
+  Object.entries(predefinedQnA).forEach(([question, answer]) => {
+    const btn = document.createElement("button");
+    btn.textContent = question;
+    btn.className = "faq-button";
+    btn.onclick = () => {
+      appendMessage(question, "user");
+      appendMessage(answer, "bot");
+      
+      // Save BOTH question and answer to Supabase
+      saveMessageToSupabase(question, "user");
+      saveMessageToSupabase(answer, "bot");
+      
+      saveChatToServer(question);
+    };
+    container.appendChild(btn);
+  });
+  container.dataset.populated = "true";
+}
 
     function toggleFAQ() {
       const faqContainer = document.getElementById("faq-questions");
@@ -323,4 +364,5 @@
   </script>
 </body>
 </html>
+
 
