@@ -267,7 +267,7 @@ async function sendMessage() {
   inputField.value = '';
 
   // Save user message to Supabase
-  await saveMessageToSupabase(text, 'user');
+   saveMessageToSupabase(text, 'user').catch(console.error);
   
   fetch('https://knopeprojectfull.onrender.com/log', {
     method: 'POST',
@@ -365,6 +365,7 @@ function buildFAQButtonsOnce(container) {
   </script>
 </body>
 </html>
+
 
 
 
