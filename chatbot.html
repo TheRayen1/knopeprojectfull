@@ -250,7 +250,8 @@ async function saveMessageToSupabase(message, sender) {
     console.error('Exception saving to Supabase:', err);
     return false;
   }
-}    function appendMessage(content, sender) {
+    
+    function appendMessage(content, sender) {
       const bubble = document.createElement('div');
       bubble.className = `bubble ${sender === 'user' ? 'user-msg' : 'bot-msg'}`;
       bubble.textContent = content;
@@ -364,5 +365,6 @@ function buildFAQButtonsOnce(container) {
   </script>
 </body>
 </html>
+
 
 
