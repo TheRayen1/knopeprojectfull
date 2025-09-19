@@ -15,7 +15,6 @@
       display: flex;
       justify-content: center;
     }
-
     .chat-container {
       margin-top: 0%;
       background-color: white;
@@ -24,7 +23,6 @@
       display: flex;
       flex-direction: column;
     }
-
     .chat-header {
       background-color: #44c2c2;
       color: white;
@@ -34,181 +32,66 @@
       display: flex;
       align-items: center;
     }
-
-    .chat-header img {
-      height: 90px;
-      margin-right: 12px;
-    }
-
+    .chat-header img { height: 90px; margin-right: 12px; }
     .chat-messages {
-      flex: 1;
-      padding: 10px;
-      overflow-y: auto;
-      background-color: #ece5dd;
-      display: flex;
-      flex-direction: column;
+      flex: 1; padding: 10px; overflow-y: auto;
+      background-color: #ece5dd; display: flex; flex-direction: column;
     }
-
     .bubble {
-      max-width: 75%;
-      padding: 10px 14px;
-      border-radius: 14px;
-      margin: 6px 0;
-      word-wrap: break-word;
-      white-space: pre-wrap;
+      max-width: 75%; padding: 10px 14px; border-radius: 14px;
+      margin: 6px 0; word-wrap: break-word; white-space: pre-wrap;
     }
-
-    .user-msg {
-      background-color: #44c2c2;
-      color: white;
-      align-self: flex-end;
-      border-bottom-right-radius: 0;
-    }
-
-    .bot-msg {
-      background-color: white;
-      color: black;
-      align-self: flex-start;
-      border-bottom-left-radius: 0;
-      border: 1px solid #ddd;
-    }
-
-    .chat-input {
-      background-color: #f0f0f0;
-      padding: 10px;
-      border-top: 1px solid #ccc;
-    }
-
-    .chat-input-row {
-      display: flex;
-      gap: 10px;
-      align-items: center;
-      flex-wrap: wrap;
-    }
-
+    .user-msg { background-color: #44c2c2; color: white; align-self: flex-end; border-bottom-right-radius: 0; }
+    .bot-msg { background-color: white; color: black; align-self: flex-start; border-bottom-left-radius: 0; border: 1px solid #ddd; }
+    .chat-input { background-color: #f0f0f0; padding: 10px; border-top: 1px solid #ccc; }
+    .chat-input-row { display: flex; gap: 10px; align-items: center; flex-wrap: wrap; }
     textarea {
-      flex: 1 1 300px;
-      resize: none;
-      font-size: 14px;
-      padding: 8px;
-      border-radius: 6px;
-      border: 1px solid #ccc;
+      flex: 1 1 300px; resize: none; font-size: 14px; padding: 8px;
+      border-radius: 6px; border: 1px solid #ccc;
     }
-
     .send-btn {
-      padding: 8px 16px;
-      background-color: #44c2c2;
-      color: white;
-      border: none;
-      border-radius: 6px;
-      font-weight: bold;
-      cursor: pointer;
+      padding: 8px 16px; background-color: #44c2c2; color: white;
+      border: none; border-radius: 6px; font-weight: bold; cursor: pointer;
     }
-
-    .typing {
-      font-style: italic;
-      font-size: 13px;
-      margin: 5px 0;
-      color: gray;
-    }
-
-    /* FAQ region is collapsed by default */
-    #faq-questions {
-      display: none;
-      padding: 0 16px 16px;
-      flex-direction: column;
-      gap: 8px;
-    }
-
-    /* When opened, use flex layout */
-    #faq-questions.open {
-      display: flex;
-    }
-
+    .typing { font-style: italic; font-size: 13px; margin: 5px 0; color: gray; }
+    #faq-questions { display: none; padding: 0 16px 16px; flex-direction: column; gap: 8px; }
+    #faq-questions.open { display: flex; }
     .faq-button {
-      background-color: #fff;
-      color: #075e54;
-      border: 1px solid #ccc;
-      border-radius: 6px;
-      padding: 8px 12px;
-      cursor: pointer;
-      font-size: 13px;
-      text-align: left;
+      background-color: #fff; color: #075e54; border: 1px solid #ccc;
+      border-radius: 6px; padding: 8px 12px; cursor: pointer; font-size: 13px; text-align: left;
     }
-
-    .faq-button:hover {
-      background-color: #e0f2f1;
-    }
-
+    .faq-button:hover { background-color: #e0f2f1; }
     .button-container {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 10px;
-      padding: 16px;
-      background-color: #faf9f6;
-      box-sizing: border-box;
+      display: flex; flex-wrap: wrap; justify-content: center; gap: 10px;
+      padding: 16px; background-color: #faf9f6; box-sizing: border-box;
     }
-
     .button-container button {
-      flex: 1 1 calc(45% - 10px);
-      padding: 10px 20px;
-      background-color: #faf9f6;
-      border: 3px solid #ccc;
-      border-radius: 30px;
-      font-size: 14px;
-      font-weight: bold;
-      cursor: pointer;
-      text-align: center;
-      box-shadow: inset -4px -4px 0 rgba(0, 0, 0, 0.06);
-      min-width: 120px;
+      flex: 1 1 calc(45% - 10px); padding: 10px 20px; background-color: #faf9f6;
+      border: 3px solid #ccc; border-radius: 30px; font-size: 14px;
+      font-weight: bold; cursor: pointer; text-align: center;
+      box-shadow: inset -4px -4px 0 rgba(0, 0, 0, 0.06); min-width: 120px;
     }
-
-    .button-container .uber {
-      border-color: #000000; /* Black border for Uber */
-    }
-
-    .button-container .lyft {
-      border-color: #ff00bf; /* Pink border for Lyft */
-      color: black;
-      box-shadow: inset -4px -4px 0 rgba(0, 0, 0, 0.06);
-    }
-
-    .button-container .friend {
-      border-color: #44c2c2;
-      color: #44c2c2;
-    }
-
-    .button-container button:hover {
-      opacity: 0.9;
-    }
+    .button-container .uber { border-color: #000000; }
+    .button-container .lyft { border-color: #ff00bf; color: black; }
+    .button-container .friend { border-color: #44c2c2; color: #44c2c2; }
+    .button-container button:hover { opacity: 0.9; }
   </style>
 </head>
 <body>
-
   <div class="chat-container">
     <div class="chat-header">
       <img src="nope.png" alt="Knope" />
       Safety Assistant
     </div>
-
     <div class="chat-messages" id="messages"></div>
-
     <div class="chat-input">
       <div class="chat-input-row">
         <textarea id="input" rows="1" placeholder="Type a message..."></textarea>
         <button class="send-btn" onclick="sendMessage()">Send</button>
-
-        <!-- New: Toggle FAQs button -->
-        <button id="faq-toggle" class="send-btn" type="button" aria-expanded="false">
-          Show FAQs
-        </button>
+        <button id="faq-toggle" class="send-btn" type="button" aria-expanded="false">Show FAQs</button>
       </div>
     </div>
-
-    <!-- FAQ container remains, now starts collapsed -->
     <div id="faq-questions"></div>
-
     <div class="button-container">
       <button onclick="location.href='index.html'">Home</button>
       <button onclick="location.href='report.html'">Report an Incident</button>
@@ -221,36 +104,27 @@
   <script>
     const supabaseUrl = 'https://sccaekqffwoziprkkf.supabase.co';
     const supabaseKey = 'sb_publishable_FCJ6n9u1A14pW0Xey-qi@g_c8XVktEu';
-    const supabase = supabase.createClient(supabaseUrl, supabaseKey);
+    const sb = window.supabase.createClient(supabaseUrl, supabaseKey);
 
-    const hiddenPrompt = "You are a conversational AI assistant embedded in a nightlife safety app designed to help patrons in bars and clubs to help identify next step support for people in social settings to empower themselves against drink spiking. Your responses must be short (2–3 sentences), context-sensitive, calm, and actionable.Prioritize empathy, safety, and discretion at all times.Please write a concise and natural reply. Please limit the reply within 50 words. Do not hallucinate. You must detect and respond to user sentiment (e.g., fear, confusion, urgency) appropriately, using a reassuring, non-judgmental tone.NEVER suggest a user be alone, and NEVER give advice that contradicts established safety protocols — especially in cases involving suspected drugging, harassment, or disorientation.If someone may have been drugged or feels unsafe and they identify that they are currently within a bar/club/nightlife setting, encourage them to seek help from venue staff, stay with trusted people, or contact emergency services. If someone may have been drugged or feels unsafe and they are not currently within a bar/club/nightlife setting, encourage them to stay with trusted people, or contact emergency services.Assume users may be in loud, crowded, or high-stress environments. Your goal is to help them act quickly, discreetly, and safely, guiding them toward the next best action. This chat is one component of a broader web app (www.knopecover.com) that also includes resources for getting home safely (e.g., Uber/Lyft) and understanding, accessing, and interpreting drink drug test kits. When relevant, reference the home page resources and guide users there for further support. When relevant to provide additional support resources for people who explicitly say they had been drugged, direct them to review resources available for support via: https://knomore.org/pages/education-tools. Only suggest these links when appropriate.";
+    const hiddenPrompt = "You are a conversational AI assistant embedded in a nightlife safety app ... Only suggest these links when appropriate.";
 
     const messagesDiv = document.getElementById('messages');
     const inputField = document.getElementById('input');
-    
-async function saveMessageToSupabase(message, sender) {
-  try {
-    const { data, error } = await supabase
-      .from('input')
-      .insert([
-        {
-          message: `${sender}: ${message}`,  // Combine sender + message
-          created_at: new Date().toISOString()  // Use correct column name
-        }
-      ]);
-    
-    if (error) {
-      console.error('Error saving to Supabase:', error);
-      return false;
+
+    async function saveMessageToSupabase(message, sender) {
+      try {
+        const { data, error } = await sb
+          .from('input')
+          .insert([{ message: `${sender}: ${message}`, created_at: new Date().toISOString() }]);
+        if (error) { console.error('Error saving to Supabase:', error); return false; }
+        console.log('Message saved to Supabase:', data);
+        return true;
+      } catch (err) {
+        console.error('Exception saving to Supabase:', err);
+        return false;
+      }
     }
-    
-    console.log('Message saved to Supabase:', data);
-    return true;
-  } catch (err) {
-    console.error('Exception saving to Supabase:', err);
-    return false;
-  }
-    
+
     function appendMessage(content, sender) {
       const bubble = document.createElement('div');
       bubble.className = `bubble ${sender === 'user' ? 'user-msg' : 'bot-msg'}`;
@@ -259,90 +133,81 @@ async function saveMessageToSupabase(message, sender) {
       messagesDiv.scrollTop = messagesDiv.scrollHeight;
     }
 
-async function sendMessage() {
-  const text = inputField.value.trim();
-  if (!text) return;
+    async function sendMessage() {
+      const text = inputField.value.trim();
+      if (!text) return;
 
-  appendMessage(text, 'user');
-  inputField.value = '';
+      appendMessage(text, 'user');
+      inputField.value = '';
+      saveMessageToSupabase(text, 'user').catch(console.error);
 
-  // Save user message to Supabase
-   saveMessageToSupabase(text, 'user').catch(console.error);
-  
-  fetch('https://knopeprojectfull.onrender.com/log', {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ user: text })
-  }).catch(console.error);
+      fetch('https://knopeprojectfull.onrender.com/log', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ user: text })
+      }).catch(console.error);
 
-  const typing = document.createElement('div');
-  typing.className = 'typing';
-  typing.textContent = 'Knope is typing...';
-  messagesDiv.appendChild(typing);
-  messagesDiv.scrollTop = messagesDiv.scrollHeight;
+      const typing = document.createElement('div');
+      typing.className = 'typing';
+      typing.textContent = 'Knope is typing...';
+      messagesDiv.appendChild(typing);
+      messagesDiv.scrollTop = messagesDiv.scrollHeight;
 
-  try {
-    const response = await fetch('https://knopeprojectfull.onrender.com/chat', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ message: hiddenPrompt + "\n\n" + text })
-    });
+      try {
+        const response = await fetch('https://knopeprojectfull.onrender.com/chat', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ message: hiddenPrompt + "\n\n" + text })
+        });
 
-    if (!response.ok) {
-      const errorText = await response.text();
-      throw new Error(`Server error ${response.status}: ${errorText}`);
+        if (!response.ok) {
+          const errorText = await response.text();
+          throw new Error(`Server error ${response.status}: ${errorText}`);
+        }
+
+        const data = await response.json();
+        typing.remove();
+        const botText = data.response || 'No response.';
+        appendMessage(botText, 'bot');
+        await saveMessageToSupabase(botText, 'bot');
+      } catch (err) {
+        typing.remove();
+        const errMsg = `Error: ${err.message}`;
+        appendMessage(errMsg, 'bot');
+        await saveMessageToSupabase(errMsg, 'bot');
+      }
     }
 
-    const data = await response.json();
-    typing.remove();
-    appendMessage(data.response || 'No response.', 'bot');
-    
-    // Save bot response to Supabase
-    await saveMessageToSupabase(data.response || 'No response.', 'bot');
-
-  } catch (err) {
-    typing.remove();
-    appendMessage(`Error: ${err.message}`, 'bot');
-    
-    // Save error message to Supabase
-    await saveMessageToSupabase(`Error: ${err.message}`, 'bot');
-  }
-}
-
     const predefinedQnA = {
-  "What can I do if I think my drink was tampered or drugged?": "If you suspect your drink was tampered or drugged:\n1. Stop Drinking.\n2. Tell a friend, staff member, and/or trusted person outside of the scene.\n3. Get to a position of safety.\n4. Seek medical and/or police assistance.\n5. Consider reporting to police, bar staff, university, or medical personnel.",
-  "How can I empower myself against drink spiking?": "To empower against drink spiking:\n1. Never leave drinks unattended.\n2. Watch drinks being made, poured, and/or opened.\n3. Use drink tests and/or covers.",
-  "Where can I access drink-drug tests?": "Drink-drug tests can be available at:\n1. Partnered bars. Ask staff if they have tests on premise.\n2. Partnered student health organizations.\n3. Online sites. Learn more about where to purchase tests at sayknope.com.",
-  "What symptoms should I look for to identify suspected drink spiking?": "Symptoms of suspected drink spiking can often mimic symptoms of intoxication. Watch for unusual drowsiness, confusion, balance issues, nausea, or feelings of intoxication beyond your norm for the rate of consumption.",
-  "Can the bar staff help if I suspect that a drink was drugged?": "Partnered bar staff are trained to support against drink spiking. To find partnered bars, go to the home page and click on the \"Find Knope\" button under the \"Knope Tests\" category."
-};
-
-function buildFAQButtonsOnce(container) {
-  if (container.dataset.populated === "true") return;
-  Object.entries(predefinedQnA).forEach(([question, answer]) => {
-    const btn = document.createElement("button");
-    btn.textContent = question;
-    btn.className = "faq-button";
-    btn.onclick = () => {
-      appendMessage(question, "user");
-      appendMessage(answer, "bot");
-      
-      // Save BOTH question and answer to Supabase
-      saveMessageToSupabase(question, "user");
-      saveMessageToSupabase(answer, "bot");
-      
-      saveChatToServer(question);
+      "What can I do if I think my drink was tampered or drugged?": "If you suspect ...",
+      "How can I empower myself against drink spiking?": "To empower against ...",
+      "Where can I access drink-drug tests?": "Drink-drug tests can be ...",
+      "What symptoms should I look for to identify suspected drink spiking?": "Symptoms of suspected ...",
+      "Can the bar staff help if I suspect that a drink was drugged?": "Partnered bar staff ..."
     };
-    container.appendChild(btn);
-  });
-  container.dataset.populated = "true";
-}
+
+    function buildFAQButtonsOnce(container) {
+      if (container.dataset.populated === "true") return;
+      Object.entries(predefinedQnA).forEach(([question, answer]) => {
+        const btn = document.createElement("button");
+        btn.textContent = question;
+        btn.className = "faq-button";
+        btn.onclick = () => {
+          appendMessage(question, "user");
+          appendMessage(answer, "bot");
+          saveMessageToSupabase(question, "user");
+          saveMessageToSupabase(answer, "bot");
+          saveChatToServer(question);
+        };
+        container.appendChild(btn);
+      });
+      container.dataset.populated = "true";
+    }
 
     function toggleFAQ() {
       const faqContainer = document.getElementById("faq-questions");
       buildFAQButtonsOnce(faqContainer);
       faqContainer.classList.toggle("open");
-
       const isOpen = faqContainer.classList.contains("open");
       const toggleBtn = document.getElementById("faq-toggle");
       toggleBtn.textContent = isOpen ? "Hide FAQs" : "Show FAQs";
@@ -365,7 +230,3 @@ function buildFAQButtonsOnce(container) {
   </script>
 </body>
 </html>
-
-
-
-
