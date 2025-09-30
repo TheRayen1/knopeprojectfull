@@ -36,7 +36,7 @@ async def get_home():
 @app.post("/chat")
 async def chat(msg: Message):
     try:
-        model = genai.GenerativeModel("models/gemini-1.5-flash")
+        model = genai.GenerativeModel("gemini-2.0-flash")
         response = model.generate_content(msg.message)
         return {"response": response.text}
     except Exception as e:
@@ -47,6 +47,7 @@ async def log_chat(log: ChatLog):
     with open("chat_logs.txt", "a", encoding="utf-8") as f:
         f.write(f"User: {log.user}\n")
     return {"status": "logged"}
+
 
 
 
