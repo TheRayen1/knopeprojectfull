@@ -170,6 +170,12 @@
         const botText = data.response || 'No response.';
         appendMessage(botText, 'bot');
         await saveMessageToSupabase(botText, 'bot');
+        fetch('/https://knopeprojectfull.onrender.com/saveMessage', {
+  method: 'POST',
+  headers: { 'Content-Type': 'application/json' },
+  body: JSON.stringify({ user_msg: text, chat_msg: botText })
+});
+
       } catch (err) {
         typing.remove();
         const errMsg = `Error: ${err.message}`;
@@ -239,6 +245,7 @@ const predefinedQnA = {
   </script>
 </body>
 </html>
+
 
 
 
