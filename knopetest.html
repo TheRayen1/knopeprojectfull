@@ -66,16 +66,17 @@
 
     .image-row {
       display: flex;
-      gap: 12px;
+      gap: 16px;
       margin-bottom: 32px;
     }
 
     .placeholder-img {
       flex: 1;
-      height: 100px;
+      height: 160px;
+      object-fit: cover; 
       background-color: #112b2a;
       border: 3px solid #44c2c2;
-      border-radius: 8px;
+      border-radius: 10px;
       cursor: pointer;
       display: flex;
       align-items: center;
@@ -123,6 +124,7 @@
     }
 
     @media (max-width: 400px) {
+      .placeholder-img { height: 120px; }
       .btn {
         flex: 1 1 100%;
         justify-content: center;
