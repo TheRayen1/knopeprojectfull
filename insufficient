@@ -78,8 +78,9 @@
   <a class="back-arrow" href="index.html">↩</a>
 
   <div class="card">
-    <img class="logo" src="nope.png" alt="Knope Logo">
     <h2>Insufficient Sample</h2>
+    <img class="logo" src="1.png" alt="1">
+
     <p><strong>What this means:</strong><br>
        Not enough sample was added to the test. The control line (C) is still blue.</p>
     <p><strong>Next steps:</strong><br>
